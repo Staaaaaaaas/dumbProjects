@@ -26,6 +26,9 @@ function preload() {
     rockSound = loadSound("assets/rock");
     paperSound = loadSound("assets/paper");
     scissorsSound = loadSound("assets/scissors");
+    rockSound.setVolume(0.1);
+    paperSound.setVolume(0.1);
+    scissorsSound.setVolume(0.1);
 }
 
 function toggleMute() {
