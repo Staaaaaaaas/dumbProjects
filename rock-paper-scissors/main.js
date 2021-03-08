@@ -16,11 +16,31 @@ class Emoji {
         text(this.emoji, this.x, this.y);
     }
 }
+let rockSound;
+let paperSound;
+let scissorsSound;
+let button;
+let mute = true;
+function preload() {
+    soundFormats('mp3');
+    rockSound = loadSound("assets/rock");
+    paperSound = loadSound("assets/paper");
+    scissorsSound = loadSound("assets/scissors");
+}
+
+function toggleMute() {
+    if(mute){
+        button.elt.innerHTML = "MUTE";
+    }
+    else button.elt.innerHTML = "UNMUTE";
+    mute = !mute;
+}
 
 function setup() {
+    button = createButton('UNMUTE');
     createCanvas(800, 800);
     textSize(32); 
-    
+    button.mousePressed(toggleMute);
 }
 let emojis = [];
 for(let i=0; i<10;i++){
@@ -44,12 +64,15 @@ function draw() {
                (emoji1.y < emoji2.y && emoji1.y + 32 > emoji2.y)){
                 if(emoji1.emoji == "⛰️" && emoji2.emoji == "✂️") {
                     emoji2.emoji = "⛰️";
+                    if(!mute) rockSound.play();
                 }
                 if(emoji1.emoji == "🧻" && emoji2.emoji == "⛰️") {
                     emoji2.emoji = "🧻";
+                    if(!mute)paperSound.play();
                 }
                 if(emoji1.emoji == "✂️" && emoji2.emoji == "🧻") {
                     emoji2.emoji = "✂️";
+                    if(!mute) scissorsSound.play();
                 }
             }
         });
