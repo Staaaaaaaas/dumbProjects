@@ -19,8 +19,11 @@ class Emoji {
 let rockSound;
 let paperSound;
 let scissorsSound;
-let button;
+let muteButton;
+let restartButton;
 let mute = true;
+let emojis;
+let slider;
 function preload() {
     soundFormats('mp3');
     rockSound = loadSound("assets/rock");
@@ -33,23 +36,33 @@ function preload() {
 
 function toggleMute() {
     if(mute){
-        button.elt.innerHTML = "MUTE";
+        muteButton.elt.innerHTML = "MUTE";
     }
-    else button.elt.innerHTML = "UNMUTE";
+    else muteButton.elt.innerHTML = "UNMUTE";
     mute = !mute;
 }
 
-function setup() {
-    button = createButton('UNMUTE');
+function restartGame(){
+    emojis = [];
+    for(let i=0; i<slider.value();i++){ 
+        emojis.push(new Emoji("⛰️"));
+        emojis.push(new Emoji("🧻"));
+        emojis.push(new Emoji("✂️"));
+    }
+}
+
+
+
+
+function setup() {    
+    muteButton = createButton('UNMUTE');
+    restartButton = createButton('RESTART');
+    slider = createSlider(1, 20, 10, 1);
     createCanvas(800, 800);
     textSize(32); 
-    button.mousePressed(toggleMute);
-}
-let emojis = [];
-for(let i=0; i<10;i++){
-    emojis.push(new Emoji("⛰️"));
-    emojis.push(new Emoji("🧻"));
-    emojis.push(new Emoji("✂️"));
+    muteButton.mousePressed(toggleMute);
+    restartButton.mousePressed(restartGame);
+    restartGame();
 }
 
 function draw() {

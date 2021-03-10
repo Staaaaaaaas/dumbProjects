@@ -2,7 +2,7 @@ html {
     background-color: #333
 }
 
-canvas, button {
+input, canvas, button {
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
@@ -11,4 +11,3 @@ canvas, button {
     width: 800px;
     outline: black 3px solid;
 }
-    
