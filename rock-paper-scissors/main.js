@@ -76,9 +76,11 @@ function draw() {
             if(emoji1.emoji == emoji2.emoji){
                 return true;
             }
+            
             if((emoji1.x < emoji2.x && emoji1.x + textWidth(emoji1.emoji) > emoji2.x) && 
-               (emoji1.y < emoji2.y && emoji1.y + 32 > emoji2.y)){
+               (emoji1.y-32 < emoji2.y && emoji1.y + 6 > emoji2.y)){
                 if(emoji1.emoji == "⛰️" && emoji2.emoji == "✂️") {
+                    
                     emoji2.emoji = "⛰️";
                     if(!mute) rockSound.play();
                 }
